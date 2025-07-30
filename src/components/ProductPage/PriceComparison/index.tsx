@@ -1,11 +1,11 @@
 import React from 'react'
 import SideProduct from './SideProduct'
-
 import OffersComparison from './OffersComparison'
+import TabComponent from './TabComponent'
 import NotFound from '@/app/not-found'
 
-const PriceComparison = async ({ params }: { params: { id: string } }) => {
-    const { id } = await params
+const PriceComparison = async ({ params }: { params: { id: string, gtin: string } }) => {
+    const { id, gtin } = await params
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/public/products/${id}/offers`)
         .then((res) => res.json());
 
@@ -13,6 +13,11 @@ const PriceComparison = async ({ params }: { params: { id: string } }) => {
         return <NotFound />;
     }
     const offers = response.data;
+
+    const relativeProductsRes = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/public/products?gtin=${gtin}`)
+    const relativeProductData = await relativeProductsRes.json();
+    const relativeProduct = relativeProductData.data;
+  
     return (
         <div>
             <main className="min-h-screen  bg-[#fff] p-6">
@@ -22,23 +27,13 @@ const PriceComparison = async ({ params }: { params: { id: string } }) => {
                         <div className='order-last lg:order-first'>
 
                             <SideProduct />
-                            
+
                         </div>
 
                         <div className="flex-1">
-
-                            {
-                                offers.length > 0 ? (<>
-
-                                    <div className="flex justify-between items-center mb-4 text-sm text-gray-600">
-                                        <span>Sort by: <strong>Prices</strong></span>
-                                        <span>{offers.length} results</span>
-                                    </div>
-                                    <OffersComparison offers={offers} />
-                                </>) : (<div className="text-center text-gray-500">No offers found</div>)
-
-                            }
-
+                            <TabComponent offers={offers} relativeProduct={relativeProduct || []}>
+                                <OffersComparison offers={offers} />
+                            </TabComponent>
                         </div>
                     </div>
                 </div>
