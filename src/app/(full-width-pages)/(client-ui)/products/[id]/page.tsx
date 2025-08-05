@@ -51,7 +51,7 @@ export const generateMetadata = async ({ params }: { params: Promise<{ id: strin
         openGraph: {
             title: `${product.title} | Best Offers and Prices`,
             description: offerListString,
-            url: `${FRONTEND_URL}/products/${product.id}`,
+            url: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/products/${product.id}`,
             images: product.image ? [product.image] : [],
         },
         twitter: {
@@ -126,7 +126,7 @@ const ProductPage = async ({ params }: { params: Promise<{ id: string }> }) => {
 
             <main>
                 <ProductDetails product={product} />
-                <PriceComparison params={{ id: product.id }} />
+                <PriceComparison params={{ id: product.id, gtin: product.gtin }} />
             </main>
         </>
     );
