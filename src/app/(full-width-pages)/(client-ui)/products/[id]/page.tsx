@@ -5,6 +5,7 @@ import PriceComparison from '@/components/ProductPage/PriceComparison';
 import NotFound from '@/app/not-found';
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+const FRONTEND_URL = process.env.FRONTEND_URL;
 
 
 export const generateMetadata = async ({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> => {
@@ -50,7 +51,7 @@ export const generateMetadata = async ({ params }: { params: Promise<{ id: strin
         openGraph: {
             title: `${product.title} | Best Offers and Prices`,
             description: offerListString,
-            url: `https://www.price-comparison.com/products/${product.id}`,
+            url: `${FRONTEND_URL}/products/${product.id}`,
             images: product.image ? [product.image] : [],
         },
         twitter: {
