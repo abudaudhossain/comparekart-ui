@@ -14,9 +14,11 @@ const PriceComparison = async ({ params }: { params: { id: string, gtin: string 
     }
     const offers = response.data;
 
+    
     const relativeProductsRes = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/public/products?gtin=${gtin}`)
     const relativeProductData = await relativeProductsRes.json();
     const relativeProduct = relativeProductData.data;
+ 
   
     return (
         <div>

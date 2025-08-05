@@ -15,58 +15,7 @@ const OffersComparison: React.FC<ProductOfferProms> = ({ offers }) => {
     const [clickedId, setClickedId] = useState<string | null>(null);
     const [captchaRequired, setCaptchaRequired] = useState(false);
 
-    // const offers = [
-    //     {
-    //         title: 'Samsung Galaxy A16 5G 6.7" Smartphone 128GB',
-    //         subtitle: 'Unlocked Dual-SIM - Light Grey',
-    //         price: 127.79,
-    //         deliveryFee: 0,
-    //         payment: ['visa', 'mastercard', 'paypal'],
-    //         delivery: 'Will usually delivered within 3 working days',
-    //         fastDelivery: true,
-    //         freeReturn: true,
-    //         shop: 'eBay',
-    //         rating: 5.0,
-    //         ratingCount: 495969,
-    //         tag: 'Like New',
-    //     },
-    //     {
-    //         title: 'Samsung Grade A Galaxy A16 5G Light Grey',
-    //         price: 129.99,
-    //         deliveryFee: 0,
-    //         payment: ['visa', 'mastercard'],
-    //         delivery: 'Unknown',
-    //         fastDelivery: false,
-    //         freeReturn: false,
-    //         shop: 'Envirofone',
-    //         rating: 2.0,
-    //         ratingCount: 13,
-    //     },
-    //     {
-    //         title: 'GALAXY A16 5G GREY 128GB',
-    //         price: 142.99,
-    //         deliveryFee: 0,
-    //         payment: ['visa', 'amex', 'paypal'],
-    //         delivery: '1-2 days',
-    //         fastDelivery: true,
-    //         freeReturn: false,
-    //         shop: 'OnBuy',
-    //         rating: 4.2,
-    //         ratingCount: 5,
-    //     },
-    //     {
-    //         title: 'Samsung Galaxy A16 5G Dual Sim - Like New - Light Gray',
-    //         price: 164.99,
-    //         deliveryFee: 0,
-    //         payment: ['visa', 'mastercard'],
-    //         delivery: '1 day',
-    //         fastDelivery: true,
-    //         freeReturn: false,
-    //         shop: 'The Big Phone Store',
-    //         rating: null,
-    //         ratingCount: null,
-    //     },
-    // ];
+   
 
     const filtered = offers.filter((offer: ProductOffer) => {
         if (filters.fastDelivery && !offer.fastDelivery) return false;
