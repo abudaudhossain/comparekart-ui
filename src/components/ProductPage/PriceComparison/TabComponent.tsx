@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import React, { useState } from 'react'
 
 interface TabComponentProps {
@@ -10,7 +11,7 @@ interface TabComponentProps {
 
 const TabComponent: React.FC<TabComponentProps> = ({ offers, relativeProduct, children }) => {
     const [activeTab, setActiveTab] = useState<'offers' | 'relative'>('offers')
-
+    console.log(relativeProduct)
     return (
         <div className="w-full">
             {/* Tab Navigation */}
@@ -67,9 +68,9 @@ const TabComponent: React.FC<TabComponentProps> = ({ offers, relativeProduct, ch
                                             <span className="text-lg font-bold text-blue-600">
                                                 ${product.price || 'N/A'}
                                             </span>
-                                            <button className="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600 transition-colors">
+                                            <Link href={product.link} className="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600 transition-colors">
                                                 View Details
-                                            </button>
+                                            </Link>
                                         </div>
                                     </div>
                                 ))}
